@@ -506,6 +506,7 @@
         });
  $('select[name="subcategory_id"]').on('change', function(){
             var subcategory_id = $(this).val();
+												console.log(subcategory_id);
             if(subcategory_id) {
                 $.ajax({
                     url: "{{  url('/category/sub-subcategory/ajax') }}/"+subcategory_id,

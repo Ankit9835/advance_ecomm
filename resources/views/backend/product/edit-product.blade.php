@@ -463,18 +463,19 @@
         @csrf
 			<div class="row row-sm">
 			
+		@foreach($multiImgs as $img)
 				<div class="col-md-3">
 
 <div class="card">
-  <img src="" class="card-img-top" style="height: 130px; width: 280px;">
+  <img src="{{ asset($img->photo_name) }}" class="card-img-top" style="height: 130px; width: 280px;">
   <div class="card-body">
     <h5 class="card-title">
-<a href="" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i> </a>
+<a href="{{ route('product.multiimg.delete',$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i> </a>
      </h5>
     <p class="card-text"> 
     	<div class="form-group">
     		<label class="form-control-label">Change Image <span class="tx-danger">*</span></label>
-    		<input class="form-control" type="file" name="multi_img">
+    		<input class="form-control" type="file" name="multi_img[{{ $img->id }}]">
     	</div> 
     </p>
    
@@ -482,6 +483,7 @@
 </div> 		
 				
 				</div><!--  end col md 3		 -->	
+				@endforeach
 			
 			</div>			
 
@@ -522,18 +524,18 @@
 				  </div>
 
 			
-		<form method="post" action="" enctype="multipart/form-data">
+		<form method="post" action="{{ route('update-product-thambnail') }}" enctype="multipart/form-data">
         @csrf
 
-     <input type="hidden" name="id" value="">
-    <input type="hidden" name="old_img" value="">
+     <input type="hidden" name="id" value="{{ $product->id }}">
+    <input type="hidden" name="old_img" value="{{ $product->product_thambnail }}">
 
 			<div class="row row-sm">
 				 
 				<div class="col-md-3">
 
 <div class="card">
-  <img src="" class="card-img-top" style="height: 130px; width: 280px;">
+  <img src="{{ asset($product->product_thambnail) }}" class="card-img-top" style="height: 130px; width: 280px;">
   <div class="card-body">
      
     <p class="card-text"> 
